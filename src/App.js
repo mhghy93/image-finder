@@ -1,10 +1,12 @@
+import { Fragment } from 'react';
 import './App.css';
+import Home from './components/pages/Home';
 
 function App() {
   return (
-    <div>
-      <h1 className="text-center">Hello</h1>
-    </div>
+    <Fragment>
+      <Home />
+    </Fragment>
   );
 }
 
