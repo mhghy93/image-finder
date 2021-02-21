@@ -6,9 +6,17 @@ import {
 } from './types';
 import axios from 'axios';
 
+const dotenv = require('dotenv');
+dotenv.config();
+
+const BASE_URL = 'https://api.unsplash.com';
+const CLIENT_ID = process.env.REACT_APP_UNSPLASH_CLIENT_ID;
+
 export const showAllImages = () => async (dispatch) => {
   try {
-    const res = await axios.get('/api/game/all');
+    const res = await axios.get(
+      `${BASE_URL}/photos?page=1&client_id=${CLIENT_ID}`
+    );
 
     dispatch({
       type: SHOW_ALL_IMAGES,
