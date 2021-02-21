@@ -1,9 +1,4 @@
-import {
-  SHOW_ALL_IMAGES,
-  SHOW_IMAGE_DETAIL,
-  SEARCH_IMAGE,
-  IMAGE_ERROR,
-} from './types';
+import { SHOW_ALL_IMAGES, SEARCH_IMAGE, IMAGE_ERROR } from './types';
 import axios from 'axios';
 
 const dotenv = require('dotenv');
@@ -25,7 +20,26 @@ export const showAllImages = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: IMAGE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: { msg: 'Error cannot fetch the image' },
+    });
+  }
+};
+
+export const searchImage = (searchQuery) => async (dispatch) => {
+  searchQuery = searchQuery.split('=')[1];
+  try {
+    const res = await axios.get(
+      `${BASE_URL}/search/photos?page=1&query=${searchQuery}&client_id=${CLIENT_ID}`
+    );
+
+    dispatch({
+      type: SEARCH_IMAGE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: IMAGE_ERROR,
+      payload: { msg: 'Error cannot fetch the image' },
     });
   }
 };

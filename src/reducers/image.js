@@ -1,13 +1,8 @@
-import {
-  SHOW_ALL_IMAGES,
-  SHOW_IMAGE_DETAIL,
-  SEARCH_IMAGE,
-  IMAGE_ERROR,
-} from '../actions/types';
+import { SHOW_ALL_IMAGES, SEARCH_IMAGE, IMAGE_ERROR } from '../actions/types';
 
 const initialState = {
   images: [],
-  image: {},
+  searchedImages: [],
   loading: true,
   error: {},
 };
@@ -21,10 +16,12 @@ export default function image(state = initialState, action) {
         images: payload,
         loading: false,
       };
-    case SHOW_IMAGE_DETAIL:
-      return state;
     case SEARCH_IMAGE:
-      return state;
+      return {
+        ...state,
+        searchedImages: payload,
+        loading: false,
+      };
     case IMAGE_ERROR:
       return {
         ...state,

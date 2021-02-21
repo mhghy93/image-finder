@@ -6,7 +6,7 @@ import Loading from '../layouts/Loading';
 import { showAllImages } from '../../actions/image';
 import GalleryItem from './GalleryItem';
 
-const ImageGallery = ({ image: { images, loading }, showAllImages }) => {
+const ImageGallery = ({ image: { images, loading, error }, showAllImages }) => {
   useEffect(() => {
     showAllImages();
   }, [showAllImages]);
@@ -17,11 +17,17 @@ const ImageGallery = ({ image: { images, loading }, showAllImages }) => {
         {loading ? (
           <Loading />
         ) : (
-          <Row className="mt-5">
-            {images.map((image) => (
-              <GalleryItem key={image.id} image={image} />
-            ))}
-          </Row>
+          <Fragment>
+            {error.msg ? (
+              <p>{error.msg}</p>
+            ) : (
+              <Row className="mt-5">
+                {images.map((image) => (
+                  <GalleryItem key={image.id} image={image} />
+                ))}
+              </Row>
+            )}
+          </Fragment>
         )}
       </Container>
     </Fragment>
