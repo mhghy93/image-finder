@@ -1,14 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Col } from 'react-bootstrap';
+import ImageDetail from './ImageDetail';
 
 const GalleryItem = ({ image }) => {
   const { urls, user, likes } = image;
   const { name } = user;
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Fragment>
       <Col className="mb-5" lg={4} md={6}>
-        <Card className="shadow bg-white rounded h-100">
+        <Card className="shadow bg-white rounded h-100" onClick={handleShow}>
           <Card.Img className="card-image" variant="top" src={urls.full} />
           <Card.Body>
             <p>
@@ -19,6 +26,7 @@ const GalleryItem = ({ image }) => {
             </p>
           </Card.Body>
         </Card>
+        <ImageDetail show={show} handleClose={handleClose} image={image} />
       </Col>
     </Fragment>
   );

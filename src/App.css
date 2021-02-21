@@ -1,9 +1,15 @@
-.nav-link {
+.nav-link,
+.image-detail-link {
   color: #000000;
 }
 
 .nav-link:hover {
   color: #333333;
+}
+
+.image-detail-link:hover {
+  color: #333333;
+  text-decoration: none;
 }
 
 .logo {
