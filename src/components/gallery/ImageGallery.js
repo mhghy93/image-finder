@@ -1,8 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
+import Loading from '../layouts/Loading';
 import { showAllImages } from '../../actions/image';
+import GalleryItem from './GalleryItem';
 
 const ImageGallery = ({ image: { images, loading }, showAllImages }) => {
   useEffect(() => {
@@ -11,7 +13,17 @@ const ImageGallery = ({ image: { images, loading }, showAllImages }) => {
 
   return (
     <Fragment>
-      <Container>Image Gallery</Container>
+      <Container>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Row className="mt-5">
+            {images.map((image) => (
+              <GalleryItem key={image.id} image={image} />
+            ))}
+          </Row>
+        )}
+      </Container>
     </Fragment>
   );
 };
