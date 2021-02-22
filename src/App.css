@@ -62,7 +62,23 @@
 }
 
 /* Small devices (landscape phones, less than 768px) */
-@media (min-width: 321px) and (max-width: 767px) {
+@media (min-width: 540px) and (max-width: 767px) {
+  .search-bar {
+    width: 20rem;
+    margin-right: 0.3rem;
+  }
+  .brand-name {
+    font-size: 1.5rem;
+  }
+
+  .logo {
+    width: 2.77rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Small devices (landscape phones, less than 540px) */
+@media (min-width: 321px) and (max-width: 539px) {
   .search-bar {
     width: 14rem;
     margin-top: 1rem;
